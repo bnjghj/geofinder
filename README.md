@@ -4,12 +4,27 @@ GeoFinder Written in GOLANG
 
 GeoShape Query Examples For ElasticSearch
 
-# Run Service
+## Run Service
 ```sh
 go run main.go
 ```
 
-# Geo Point Query
+## Docker Build
+```sh
+docker build -t yourcompany/geofinder .
+```
+
+## Docker Compose Up With ElasticSearch & HaProxy
+```sh
+docker-compose up -d
+```
+
+Geofinder Service Scale To 5 Container
+```sh
+docker-compose scale srvc=5
+```
+
+### Geo Point Query
 ```sh
 POST: http://localhost:8080/point
 
@@ -26,7 +41,7 @@ Response:
 ]
 ```
 
-# Geo Circle Query
+### Geo Circle Query
 ```sh
 POST: http://localhost:8080/circle
 
@@ -64,7 +79,7 @@ Response:
 ]
 ```
 
-# Raw Geo Shape Query
+### Raw Geo Shape Query
 ```sh
 POST: http://localhost:8080/shape
 

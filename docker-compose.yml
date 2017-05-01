@@ -1,0 +1,44 @@
+version: '2'
+services:
+  es:
+    image: elasticsearch:alpine
+    ports:
+      - 9200
+      - 9300    
+    networks:
+      - back-tier 
+
+  srvc:
+    build: .
+    ports:
+      - 8080
+    environment:
+      - ELASTICSEARCH_URL=http://es:9200
+      - ELASTICSEARCH_SNIFF=false
+      - PORT=8080
+      - COMPRESS=true
+      - ELASTICSEARCH_TRACE=false
+    links:
+      - es
+    restart: always
+    networks:
+      - front-tier
+      - back-tier      
+
+  lb:
+    image: dockercloud/haproxy
+    ports:
+      - 8080:80
+    links:
+      - srvc
+    networks:
+      - front-tier
+      - back-tier
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock 
+
+networks:
+  front-tier:
+    driver: bridge
+  back-tier:
+    driver: bridge

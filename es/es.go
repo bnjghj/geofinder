@@ -10,9 +10,16 @@ import (
 	"gopkg.in/olivere/elastic.v5"
 )
 
-func CreateNewElasticSearchClient(ctx context.Context, url *string, sniff *bool) *elastic.Client {
-	client, err := elastic.NewClient(elastic.SetURL(*url), elastic.SetSniff(*sniff), elastic.SetTraceLog(log.New(os.Stdout, "es: ", 0)))
+func CreateNewElasticSearchClient(ctx context.Context, url *string, sniff *bool, trace *bool) *elastic.Client {
+	var options []elastic.ClientOptionFunc
+	options = append(options, elastic.SetURL(*url))
+	options = append(options, elastic.SetSniff(*sniff))
+	if *trace {
+		options = append(options, elastic.SetTraceLog(log.New(os.Stdout, "es: ", 0)))
+	}
+	client, err := elastic.NewClient(options...)
 	if err != nil {
+		fmt.Printf("Elasticsearch Url %s\n", *url)
 		panic(err)
 	}
 	defer client.Stop()
