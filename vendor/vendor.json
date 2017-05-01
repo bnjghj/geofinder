@@ -3,6 +3,12 @@
 	"ignore": "test",
 	"package": [
 		{
+			"checksumSHA1": "0dXjc1knTW5JMLi8nwLk3c4ji9I=",
+			"path": "github.com/caarlos0/env",
+			"revision": "7110c4e2f569e729e19ad2d89fb3b5e3d159d8ca",
+			"revisionTime": "2017-04-30T21:52:05Z"
+		},
+		{
 			"checksumSHA1": "+CqJGh7NIDMnHgScq9sl9tPrnVM=",
 			"path": "github.com/klauspost/compress/flate",
 			"revision": "e80ca55b53e5e6f53deed5c7842e7b7da95e1dc7",

@@ -9,6 +9,21 @@ GeoShape Query Examples For ElasticSearch
 go run main.go
 ```
 
+# Docker Build
+```sh
+docker build -t yourcompany/geofinder .
+```
+
+# Docker Compose Up With Elastic Search & HaProxy
+```sh
+docker-compose up -d
+```
+
+Geofinder Service Scale To 5 Container
+```sh
+docker-compose scale srvc=5
+```
+
 # Geo Point Query
 ```sh
 POST: http://localhost:8080/point
